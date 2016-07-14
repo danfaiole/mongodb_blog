@@ -1,14 +1,58 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<div class="container">
 
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
+        <div class="row">
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+            <!-- Blog Post Content Column -->
+            <div class="col-lg-12">
+
+                <!-- Blog Post -->
+
+                <!-- Title -->
+                <h1><%= @post.title %></h1>
+                <p><%= link_to "<i class='glyphicon glyphicon-edit'></i>Editar".html_safe, edit_post_path(@post) %><p>
+                <!-- Date/Time -->
+                <p>
+                  <%= timestamps_posts_helper(@post) %>
+                </p>
+
+
+                <hr>
+                <!-- Post Content -->
+                <p><%= @post.content %></p>
+                <hr>
+
+                <!-- Blog Comments -->
+
+                <!-- Comments Form -->
+                <div class="well">
+                    <h4>Leave a Comment:</h4>
+                    <form role="form">
+                        <div class="form-group">
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+
+                <hr>
+
+                <!-- Posted Comments -->
+                <% @post.comments.each do |comment| %>
+                  <div class="media">
+                      <div class="media-body">
+                          <h4 class="media-heading"><%= comment.user_name %>
+                              <small><%= comment.criado_em %> - <%= comment.updated_at == comment.created_at ? '-' : comment.editado_em%></small>
+                          </h4>
+                          <%= comment.content %>
+                      </div>
+                  </div>
+                <% end %>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>

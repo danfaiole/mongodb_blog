@@ -1,29 +1,38 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel">
+        <div class="panel-body">
+          <% @posts.each do |post| %>
 
-<h1>Listing Posts</h1>
+            <div class="row">
+              <br>
+              <div class="col-md-2 col-sm-3 text-center">
+                <%= link_to(
+                  image_tag("logo_mongo.png", alt: 'Logo MongoID Blog', width: "100px", height:"100px", class: "img-circle"), post, class: "story-img" ) %>
+              </div>
+              <div class="col-md-10 col-sm-9">
+                <h3><%= post.title.capitalize %></h3>
+                <div class="row">
+                  <div class="col-xs-9">
+                    <p> <%= truncate(post.content, length: 50, separator: ' ') %> </p>
+                    <p class="lead"><%= link_to 'Leia mais', post, class: "btn btn-default" %></p>
+                    <ul class="list-inline">
+                      <li>Publicado em: <%= post.criado_em %></li>
+                      <li><%= link_to("<i class='glyphicon glyphicon-comment'></i> #{post.how_many_comms?}".html_safe , post) %>
+                      <li><%= link_to "<i class='glyphicon glyphicon-trash'></i>Apagar post".html_safe, post, method: :delete, data: { confirm: 'Tem certeza que deseja apagar o post?' } %>
+                    </div>
+                  <div class="col-xs-3"></div>
+                </div>
+                <br><br>
+              </div>
+            </div>
+            <hr>
+          <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= post.content %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Post', new_post_path %>
+          <a href="/" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>
+        </div>
+      </div>
+   	</div><!--/col-12-->
+  </div>
+</div>

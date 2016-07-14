@@ -12,4 +12,13 @@ class Comment
 
   #Relations
   embedded_in :post
+
+  def criado_em
+    self.created_at.strftime("%d de %b de %Y as %H:%M")
+  end
+
+  def editado_em
+    self.updated_at.strftime("%d de %b de %Y as %H:%M")
+  end
+
 end
