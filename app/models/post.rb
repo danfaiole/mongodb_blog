@@ -12,13 +12,15 @@ class Post
 
   #Relations
   embeds_many :comments, cascade_callbacks: true
+  validates_associated :comments
+  accepts_nested_attributes_for :comments
 
   def criado_em
-    self.created_at.strftime("%d de %b de %Y")
+    self.created_at.strftime("%d de %b de %Y") if self.created_at.present?
   end
 
   def editado_em
-    self.updated_at.strftime("%d de %b de %Y")
+    self.updated_at.strftime("%d de %b de %Y") if self.updated_at.present?
   end
 
   def how_many_comms?

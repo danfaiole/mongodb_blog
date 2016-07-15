@@ -11,14 +11,14 @@ class Comment
   validates :content, presence: true, length: { minimum: 3 }
 
   #Relations
-  embedded_in :post
+  embedded_in :post, :inverse_of => :comments
 
   def criado_em
-    self.created_at.strftime("%d de %b de %Y as %H:%M")
+    self.created_at.strftime("%d de %b de %Y as %H:%M") if self.created_at.present?
   end
 
   def editado_em
-    self.updated_at.strftime("%d de %b de %Y as %H:%M")
+    self.updated_at.strftime("%d de %b de %Y as %H:%M") if self.updated_at.present?
   end
 
 end

@@ -27,13 +27,19 @@
 
                 <!-- Comments Form -->
                 <div class="well">
-                    <h4>Leave a Comment:</h4>
-                    <form role="form">
-                        <div class="form-group">
-                            <textarea class="form-control" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                    <h4>Deixe seu comentário!</h4>
+                    <%= form_for @post do |form| %>
+                      <%= form.fields_for @post.comments.new do |comment_form| %>
+
+                        <%= label_tag 'Seu nome' %>
+                        <%= comment_form.text_field :user_name %>
+
+                        <%= label_tag 'Comentário' %>
+                        <%= comment_form.text_area :content %>
+
+                        <%= comment_form.submit(class: "btn btn-primary") %>
+                      <% end %>
+                    <% end %>
                 </div>
 
                 <hr>
@@ -43,7 +49,9 @@
                   <div class="media">
                       <div class="media-body">
                           <h4 class="media-heading"><%= comment.user_name %>
-                              <small><%= comment.criado_em %> - <%= comment.updated_at == comment.created_at ? '-' : comment.editado_em%></small>
+                              <small><%= comment.criado_em %> - <%= comment.updated_at == comment.created_at ? '' : comment.editado_em%></small>
+                              <small><%#= link_to('Editar', edit_comment_path(comment))%> -
+                              <%#= link_to "Apagar comentário", comment, method: :delete, data: { confirm: 'Tem certeza que deseja apagar o comentário?' } %></small>
                           </h4>
                           <%= comment.content %>
                       </div>
