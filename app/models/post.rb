@@ -11,7 +11,7 @@ class Post
   validates :content, presence: true, length: { minimum: 15 }
 
   #Relations
-  embeds_many :comments, cascade_callbacks: true
+  has_many :comments#, cascade_callbacks: true
   validates_associated :comments
   accepts_nested_attributes_for :comments
 
