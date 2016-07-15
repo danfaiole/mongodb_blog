@@ -35,8 +35,8 @@
           <div class="media-body">
             <h4 class="media-heading"><%= comment.user_name %>
               <small><%= comment.criado_em %> - <%= comment.updated_at == comment.created_at ? '' : comment.editado_em%></small>
-              <small><%#= link_to('Editar', edit_comment_path(comment))%> -
-                <%#= link_to "Apagar comentário", comment, method: :delete, data: { confirm: 'Tem certeza que deseja apagar o comentário?' } %></small>
+              <small><%= link_to('Editar', edit_comment_path(comment.id))%> -
+                <%= link_to "Apagar comentário", comment, method: :delete, data: { confirm: 'Tem certeza que deseja apagar o comentário?' } %></small>
               </h4>
               <%= comment.content %>
             </div>
