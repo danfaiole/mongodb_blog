@@ -1,11 +1,13 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.desc(:title).page params[:page]
   end
 
   def show
     @post = Post.find(params[:id])
     @post.comments.build
+
+    @comments = @post.comments.desc(:title).page params[:page]
   end
 
   def new
@@ -68,6 +70,6 @@ class PostsController < ApplicationController
   private
 
     def post_params
-      params.require(:post).permit(:title, :content, comment: [:user_name, :content])
+      params.require(:post).permit(:title, :content, :page, comment: [:user_name, :content])
     end
 end
