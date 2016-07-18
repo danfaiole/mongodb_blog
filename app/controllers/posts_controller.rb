@@ -1,13 +1,13 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.desc(:title).page params[:page]
+    @posts = Post.desc(:created_at).page params[:page]
   end
 
   def show
     @post = Post.find(params[:id])
     @post.comments.build
 
-    @comments = @post.comments.desc(:title).page params[:page]
+    @comments = @post.comments.desc(:created_at).page params[:page]
   end
 
   def new
