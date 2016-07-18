@@ -8,7 +8,7 @@
 100.times do
   Post.create(
     title: Faker::Book.title,
-    content: Faker::Lorem.paragraphs(3)
+    content: Faker::Lorem.paragraphs(3, true)
   )
 end
 

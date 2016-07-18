@@ -39,10 +39,9 @@
           <% end %>
           <% end %>
         </div>
-        <hr>
 
         <% @comments.each do |comment| %>
-        <div class="media">
+        <div class="col-md-12 media">
           <div class="media-body">
             <h4 class="media-heading"><%= comment.user_name %>
               <small><%= comment.criado_em %> - <%= comment.updated_at == comment.created_at ? '' : comment.editado_em%></small>
