@@ -16,6 +16,9 @@ gem 'mongoid'
 #Pagination
 gem 'kaminari'
 
+#Faker
+gem 'faker'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
